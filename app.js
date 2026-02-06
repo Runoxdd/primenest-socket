@@ -2,9 +2,10 @@ import { Server } from "socket.io";
 
 const io = new Server({
   cors: {
-    origin: true, // Dynamically allows the requesting origin
+    // Hardcoding your Vercel URL to bypass Environment Variable issues
+    origin: ["https://primenest-client.vercel.app", "http://localhost:5173"],
     methods: ["GET", "POST"],
-    credentials: true
+    credentials: true,
   },
 });
 
@@ -44,4 +45,4 @@ io.on("connection", (socket) => {
 
 const PORT = process.env.PORT || 4000;
 io.listen(PORT);
-console.log(`Socket server running on port ${PORT}`);
+console.log(`Socket server is strictly listening on port ${PORT}`);

@@ -2,8 +2,10 @@ import { Server } from "socket.io";
 
 const io = new Server({
   cors: {
-    // Allows your local machine and your future hosted site
+    // This looks for your Vercel URL in environment variables
     origin: [process.env.CLIENT_URL, "http://localhost:5173"],
+    methods: ["GET", "POST"],
+    credentials: true
   },
 });
 
@@ -41,5 +43,7 @@ io.on("connection", (socket) => {
   });
 });
 
-// VERY IMPORTANT: Render uses process.env.PORT
-io.listen(process.env.PORT || 4000);
+// Render provides the PORT dynamically
+const PORT = process.env.PORT || 4000;
+io.listen(PORT);
+console.log(`Socket server running on port ${PORT}`);

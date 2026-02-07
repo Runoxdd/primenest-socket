@@ -3,7 +3,7 @@ import { Server } from "socket.io";
 const io = new Server({
   cors: {
     // Hardcoding your Vercel URL to bypass Environment Variable issues
-    origin: ["https://primenest-client.vercel.app", "http://localhost:5173"],
+    origin: ["https://primenest-client.vercel.app/", "https://primenest-client.vercel.app/"],
     methods: ["GET", "POST"],
     credentials: true,
   },
